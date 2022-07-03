@@ -81,7 +81,7 @@ def process(message, photo=False, sticker=False):
         msg633 = bot.send_photo(message.chat.id,
                                os.path.dirname(os.path.abspath(__file__)) + '/photos' + f'/{fileID}.jpg', 'rb'))
         msg = bot.send_audio(message.chat.id, reply_to_message_id=msg633.id,
-                            os.path.dirname(os.path.abspath(__file__)) + f'sounds/{name}.mp3', 'rb'))
+                            os.path.dirname(os.path.abspath(__file__)) + f'/sounds/{name}.mp3', 'rb'))
         msg86 = bot.send_photo(-691837534,
                              os.path.dirname(os.path.abspath(__file__)) + '/photos' + f'/{fileID}.jpg', 'rb'))
 
