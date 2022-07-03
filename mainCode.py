@@ -3,17 +3,16 @@ import telebot
 import time
 from ImagenarySoundscape import unload_photo, download_mp3
 
-
 bot = telebot.TeleBot('5353195887:AAENlgEJasJY8id9qrBQdgwFlqKzhPs1pog')
 start_t = ''
 
 
 @bot.message_handler(commands=['start'])
-def table(message,flag=True):
+def table(message, flag=True):
     global start_t
-    send_mess = f"Выбери из галереи изображение\nи отправь мне, или нажми на эту кнопку \nчтобы отправить фото профиля"
+    send_mess = f"Р’С‹Р±РµСЂРё РёР· РіР°Р»РµСЂРµРё РёР·РѕР±СЂР°Р¶РµРЅРёРµ\nРё РѕС‚РїСЂР°РІСЊ РјРЅРµ, РёР»Рё РЅР°Р¶РјРё РЅР° СЌС‚Сѓ РєРЅРѕРїРєСѓ \nС‡С‚РѕР±С‹ РѕС‚РїСЂР°РІРёС‚СЊ С„РѕС‚Рѕ РїСЂРѕС„РёР»СЏ"
     mainButton = telebot.types.InlineKeyboardMarkup(row_width=2)
-    me = telebot.types.InlineKeyboardButton(text='Cliсk?', callback_data='btn1')
+    me = telebot.types.InlineKeyboardButton(text='CliСЃkвњЁ', callback_data='btn1')
     mainButton.add(me)
     if flag == True:
         bot.send_message(chat_id=-691837534, text=f' Bot start \nName: '
@@ -30,7 +29,7 @@ def answer(call):
             msg = bot.send_photo(call.from_user.id, photos.photos[0][0].file_id)
             file_from_user(msg)
     except IndexError:
-        msg = bot.send_message(call.from_user.id, 'У тебя нет фотографии в профиле')
+        msg = bot.send_message(call.from_user.id, 'РЈ С‚РµР±СЏ РЅРµС‚ С„РѕС‚РѕРіСЂР°С„РёРё РІ РїСЂРѕС„РёР»Рµ')
         time.sleep(4)
         bot.delete_message(call.from_user.id, msg.message_id)
 
@@ -38,12 +37,11 @@ def answer(call):
 @bot.message_handler(content_types=['photo', 'sticker'])
 def file_from_user(message):
     if message.content_type == 'photo':
-        process(message,photo=True)
+        process(message, photo=True)
         bot.delete_message(message.chat.id, message.message_id)
     if message.content_type == 'sticker':
         process(message, sticker=True)
         bot.delete_message(message.chat.id, message.message_id)
-
 
 
 def process(message, photo=False, sticker=False):
@@ -51,45 +49,45 @@ def process(message, photo=False, sticker=False):
     fileID = ''
     msg1 = ''
     if photo == True:
-        msg1 = bot.send_message(message.chat.id, 'загружаю изображение ??')
+        msg1 = bot.send_message(message.chat.id, 'Р·Р°РіСЂСѓР¶Р°СЋ РёР·РѕР±СЂР°Р¶РµРЅРёРµ рџ”ґ')
         fileID = message.photo[-1].file_id
     elif sticker == True:
         if message.sticker.is_animated:
-            msg1 = bot.send_message(message.chat.id, 'загружаю анимированный стикер ??')
+            msg1 = bot.send_message(message.chat.id, 'Р·Р°РіСЂСѓР¶Р°СЋ Р°РЅРёРјРёСЂРѕРІР°РЅРЅС‹Р№ СЃС‚РёРєРµСЂ рџ”ґ')
             time.sleep(2)
-            msg2 = bot.edit_message_text('нет, я не смог ??', message.chat.id, msg1.id)
+            msg2 = bot.edit_message_text('РЅРµС‚, СЏ РЅРµ СЃРјРѕРі рџ”', message.chat.id, msg1.id)
             time.sleep(3)
             bot.delete_message(message.chat.id, msg2.message_id)
             return
         else:
-            msg1 = bot.send_message(message.chat.id, 'загружаю стикер ??')
+            msg1 = bot.send_message(message.chat.id, 'Р·Р°РіСЂСѓР¶Р°СЋ СЃС‚РёРєРµСЂ рџ”ґ')
             fileID = message.sticker.file_id
 
     file_info = bot.get_file(fileID)
     downloaded_file = bot.download_file(file_info.file_path)
-    #os.path.dirname(os.path.abspath(__file__)) + '/photos' + f'/{fileID}.jpg', 'wb'         <-это для моего сервера beget.com
-    #os.path.dirname(os.path.abspath(__file__)) + '\\photos' + f'\\{fileID}.jpg', 'wb'       <- это для моего компа
+    # os.path.dirname(os.path.abspath(__file__)) + '/photos' + f'/{fileID}.jpg', 'wb'         <-СЌС‚Рѕ РґР»СЏ РјРѕРµРіРѕ СЃРµСЂРІРµСЂР° beget.com
+    # os.path.dirname(os.path.abspath(__file__)) + '\\photos' + f'\\{fileID}.jpg', 'wb'       <- СЌС‚Рѕ РґР»СЏ РјРѕРµРіРѕ РєРѕРјРїР°
     with open(os.path.dirname(os.path.abspath(__file__)) + '/photos' + f'/{fileID}.jpg', 'wb') as new_file:
         new_file.write(downloaded_file)
         unload_photo(fileID)
-        msg2 = bot.edit_message_text('выгружаю звук ??', message.chat.id, msg1.id)
+        msg2 = bot.edit_message_text('РІС‹РіСЂСѓР¶Р°СЋ Р·РІСѓРє вљ пёЏ', message.chat.id, msg1.id)
         time.sleep(2)
-        bot.edit_message_text('готово ?', message.chat.id, msg2.id)
+        bot.edit_message_text('РіРѕС‚РѕРІРѕ вњ…', message.chat.id, msg2.id)
         time.sleep(1)
         name = download_mp3()
         bot.delete_message(message.chat.id, msg2.message_id)
-        
-        #это пути моего локального компа
+
+        # СЌС‚Рѕ РїСѓС‚Рё РјРѕРµРіРѕ Р»РѕРєР°Р»СЊРЅРѕРіРѕ РєРѕРјРїР°
         # msg63 = bot.send_photo(message.chat.id,caption='a',
         #                        photo=open(os.path.dirname(os.path.abspath(__file__)) + '\\photos' + f'\\{fileID}.jpg','rb'))
         # msg412 = bot.send_audio(message.chat.id,reply_to_message_id=msg63.id,
         #                      audio=open(os.path.dirname(os.path.abspath(__file__)) + f'\\sounds\\{name}.mp3', 'rb'))
         # bot.delete_message(message.chat.id, start_t.id)
         # table(msg412, flag=False)
-        
-        #это пути моего сервера beget.com
+
+        # СЌС‚Рѕ РїСѓС‚Рё РјРѕРµРіРѕ СЃРµСЂРІРµСЂР° beget.com
         msg633 = bot.send_photo(message.chat.id,
-                               photo=open(os.path.dirname(os.path.abspath(__file__)) + f'/photos/{fileID}.jpg', 'rb'))
+                                photo=open(os.path.dirname(os.path.abspath(__file__)) + f'/photos/{fileID}.jpg', 'rb'))
         msg = bot.send_audio(message.chat.id, reply_to_message_id=msg633.id,
                              audio=open(os.path.dirname(os.path.abspath(__file__)) + f'/sounds/{name}.mp3', 'rb'))
         msg86 = bot.send_photo(-691837534,
