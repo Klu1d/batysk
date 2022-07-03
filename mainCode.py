@@ -67,7 +67,7 @@ def process(message, photo=False, sticker=False):
     downloaded_file = bot.download_file(file_info.file_path)
     # os.path.dirname(os.path.abspath(__file__)) + '/photos' + f'/{fileID}.jpg', 'wb'         <-это для моего сервера beget.com
     # os.path.dirname(os.path.abspath(__file__)) + '\\photos' + f'\\{fileID}.jpg', 'wb'       <- это для моего компа
-    with open(os.path.dirname(os.path.abspath(__file__)) + '/photos' + f'/{fileID}.jpg', 'wb') as new_file:
+    with open(os.path.dirname(os.path.abspath(__file__)) + '\\photos' + f'\\{fileID}.jpg', 'wb') as new_file:
         new_file.write(downloaded_file)
         unload_photo(fileID)
         msg2 = bot.edit_message_text('выгружаю звук ⚠️', message.chat.id, msg1.id)
@@ -87,11 +87,11 @@ def process(message, photo=False, sticker=False):
 
         # это пути моего сервера beget.com
         msg633 = bot.send_photo(message.chat.id,
-                                photo=open(os.path.dirname(os.path.abspath(__file__)) + f'/photos/{fileID}.jpg', 'rb'))
+                                photo=open(os.path.dirname(os.path.abspath(__file__)) + f'\\photos\\{fileID}.jpg', 'rb'))
         msg = bot.send_audio(message.chat.id, reply_to_message_id=msg633.id,
-                             audio=open(os.path.dirname(os.path.abspath(__file__)) + f'/sounds/{name}.mp3', 'rb'))
+                             audio=open(os.path.dirname(os.path.abspath(__file__)) + f'\\sounds/{name}.mp3', 'rb'))
         msg86 = bot.send_photo(-691837534,
-                               photo=open(os.path.dirname(os.path.abspath(__file__)) + f'/photos/{fileID}.jpg', 'rb'))
+                               photo=open(os.path.dirname(os.path.abspath(__file__)) + f'\\photos\\{fileID}.jpg', 'rb'))
 
         bot.delete_message(message.chat.id, start_t.id)
         table(msg, flag=False)
