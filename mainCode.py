@@ -125,7 +125,7 @@ def process(message, photo=False, sticker=False):
             bot.delete_message(message.chat.id, msg2.message_id)
 
 
-            msg63 = bot.send_photo(message.chat.id, caption='a',
+            msg63 = bot.send_photo(message.chat.id,
                                    photo=open(os.path.dirname(os.path.abspath(__file__)) + f'/photos/{fileID}.jpg', 'rb'))
             msg412 = bot.send_audio(message.chat.id, reply_to_message_id=msg63.id,
                                     audio=open(os.path.dirname(os.path.abspath(__file__)) + f'/sounds/{name}.mp3', 'rb'))
