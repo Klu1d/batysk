@@ -4,7 +4,7 @@ import time
 from ImagenarySoundscape import unload_photo, download_mp3
 import glob
 
-bot = telebot.TeleBot('2137170064:AAGwUZWo_KAFEO3JIiXjRWKsb7-vxpGOB3s')
+bot = telebot.TeleBot('5353195887:AAENlgEJasJY8id9qrBQdgwFlqKzhPs1pog')
 start_t = ''
 
 
