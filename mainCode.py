@@ -56,7 +56,7 @@ def clear_server(message):
         time.sleep(25)
         bot.delete_message(1943319957,msg99.id)
     except Exception as eror:
-        bot.send_message(1943319957,f'Ошибка: {eror}')
+        bot.send_message(1943319957,f'Ошибка1: {eror}')
         bot.send_message(1943319957,f'Ошибка: {path1}')
         bot.send_message(1943319957,f'Ошибка: {path2}')
 
