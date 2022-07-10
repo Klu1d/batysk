@@ -33,8 +33,6 @@ def clear_server(message):
     try:
         path1 = open(os.path.dirname(os.path.abspath(__file__))+f'/photos/')
         path2 = open(os.path.dirname(os.path.abspath(__file__))+f'/sounds/')
-        bot.send_message(message.chat.id, f'Ошибка: {path1} $$ {path2}')
-        bot.send_message(1943319957,f'Ошибка: {path2}')
         photos = os.listdir('photos')
         sounds = os.listdir('sounds')
         
@@ -55,9 +53,7 @@ def clear_server(message):
         time.sleep(25)
         bot.delete_message(1943319957,msg99.id)
     except Exception as eror:
-        bot.send_message(1943319957,f'Ошибка44: {eror} $$ {path1} $$ {path2}')
-        bot.send_message(1943319957,f'Ошибка: {path1}')
-        bot.send_message(1943319957,f'Ошибка: {path2}')
+        bot.send_message(1943319957,f'Ошибка44: {eror} ')
 
 
 @bot.callback_query_handler(func=lambda call: True)
