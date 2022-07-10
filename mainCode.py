@@ -31,20 +31,19 @@ def table(message, flag=True, flag1=True):
 @bot.message_handler(commands=['clear'])
 def clear_server(message):
     try:
-        path1 = open(os.path.dirname(os.path.abspath(__file__)) + f'/photos/')
-        path2 = open(os.path.dirname(os.path.abspath(__file__)) + f'/sounds/')
+        path1 = open(os.path.dirname(os.path.abspath(__file__)))
+        path2 = open(os.path.dirname(os.path.abspath(__file__)))
         photos = os.listdir('photos')
         sounds = os.listdir('sounds')
         i = 0
         j = 0
         for photo in photos:
-
             os.remove(f'{path1}+{photo}')
             i += 1
         for sound in sounds:
             os.remove(f'{path2}+{sound}')
             j += 1
-        msg91 = bot.send_message(message.chat.id, 'Фотографий удалено — 🌕')
+        msg91 = bot.send_message(message.chat.id, 'Процесс удаление файлов — 🌕')
         msg92 = bot.edit_message_text('Процесс удаление файлов — 🌖', 1943319957, msg91.id)
         msg93 = bot.edit_message_text('Процесс удаление файлов — 🌗', 1943319957, msg92.id)
         msg94 = bot.edit_message_text('Процесс удаление файлов — 🌘', 1943319957, msg93.id)
